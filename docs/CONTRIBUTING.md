@@ -43,4 +43,3 @@ All contributors are expected to adhere to the project's code of conduct. Please
 
 
 If you have any questions or need further assistance, please contact the project maintainers at [Mcnores Samuel](samuelmcnores1@gmail.com). Thank you for your interest in contributing to the ALX Focus Zen project!
-```
