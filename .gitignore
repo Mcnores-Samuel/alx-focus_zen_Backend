@@ -1,0 +1,5 @@
+*.bak
+venv/
+__pycache__/
+*.pyc
+media/
