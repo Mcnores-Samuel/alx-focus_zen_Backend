@@ -48,10 +48,8 @@ The ALX Focus Zen app aims to tackle the widespread problem of distracted and un
 6. Track your progress and view achievements on the "Stats" page.
 
 ## Contributing
-Contributions are welcome! Please refer to the [contributing guidelines](./CONTRIBUTING.md) for more information.
+Contributions are welcome! Please refer to the [contributing guidelines](./docs/CODE_OF_CONDUCT.md) for more information.
 
-## License
-This project is licensed under the [MIT License](./docs/).
 
 ## Authors or Contributors
 - [Mcnores Samuel](www.linkedin.com/in/mcnores-nkhoma-a4020b21b/)
