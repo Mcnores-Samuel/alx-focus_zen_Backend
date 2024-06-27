@@ -1,0 +1,25 @@
+# ALX Focus Zen Engine API
+This is the API for the ALX Focus Zen Engine. It is a sort of a microservice that is responsible for the following:
+- User Authentication
+- User Authorization
+- User Profile Management
+- User Data Management
+- User Data Analysis
+- User Task Management
+- User Task Analysis
+- User Task Scheduling
+- User Task Tracking
+- User Task Reporting
+- User customizations
+- User settings
+- User preferences
+- User notifications
+- User reminders
+- User alerts
+- User messages
+- User feedback
+- User support
+- User help
+- User documentation
+- User tutorials
+- User training
