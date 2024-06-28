@@ -1,7 +1,7 @@
 """This module contains the Task model class and the TaskStatus enumeration."""
 from django.db import models
-from django.utils import timezone
 from django.core.exceptions import ValidationError
+from alxfocuszen_engine.models.user import UserProfile
 
 class TaskStatus(models.TextChoices):
     """This class defines the task status enumeration."""
@@ -43,6 +43,7 @@ class Task(models.Model):
         created_at (DateTimeField): The timestamp when the task was created.
         updated_at (DateTimeField): The timestamp when the task was last updated.
     """
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='tasks')
     title = models.CharField(max_length=255)
     description = models.TextField()
     status = models.CharField(
