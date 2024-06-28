@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'alxfocuszen_engine',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

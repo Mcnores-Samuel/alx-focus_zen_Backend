@@ -2,6 +2,8 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from alxfocuszen_engine.models.user import UserProfile
+from django.utils import timezone
+
 
 class TaskStatus(models.TextChoices):
     """This class defines the task status enumeration."""
@@ -9,6 +11,7 @@ class TaskStatus(models.TextChoices):
     IN_PROGRESS = 'in_progress', 'In Progress'
     COMPLETED = 'completed', 'Completed'
     CANCELLED = 'cancelled', 'Cancelled'
+
 
 class TaskRecurrenceType(models.TextChoices):
     """This class defines the task recurrence type enumeration."""
@@ -19,12 +22,14 @@ class TaskRecurrenceType(models.TextChoices):
     YEARLY = 'yearly', 'Yearly'
     CUSTOM = 'custom', 'Custom'
 
+
 class TaskPriority(models.IntegerChoices):
     """This class defines the task priority enumeration."""
     LOW = 1, 'Low'
     MEDIUM = 2, 'Medium'
     HIGH = 3, 'High'
     URGENT = 4, 'Urgent'
+
 
 class Task(models.Model):
     """The Task model represents a task that needs to be completed.
@@ -65,6 +70,10 @@ class Task(models.Model):
         default=TaskPriority.MEDIUM,
         choices=TaskPriority.choices
     )
+    num_pomodoros = models.PositiveIntegerField(default=0)
+    total_pomodoros = models.PositiveIntegerField(default=0)
+    task_duration = models.DurationField(null=True, blank=True)
+    task_theme_color = models.CharField(max_length=7, default='#007bff')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

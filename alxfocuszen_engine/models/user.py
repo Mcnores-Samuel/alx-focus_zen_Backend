@@ -24,7 +24,7 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
-    
+
     def create_superuser(self, email, password=None, **extra_fields):
         """Create a superuser"""
         extra_fields.setdefault('is_staff', True)
@@ -36,7 +36,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self.create_user(email, password, **extra_fields)
-    
+
 
 class UserProfile(AbstractUser):
     """The UserProfile model represents the users of the application. It includes
