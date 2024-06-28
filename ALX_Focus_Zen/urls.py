@@ -8,6 +8,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls import static
 from django.views.generic import RedirectView
+from rest_framework import routers
 
 urlpatterns = [
     path('alxfocuszen_engine/', include('alxfocuszen_engine.routes.urls')),
