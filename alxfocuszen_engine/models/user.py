@@ -1,6 +1,7 @@
 """This module contains the User model class"""
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import (
+    AbstractUser, BaseUserManager, Group, Permission)
 from django.utils import timezone
 
 
@@ -54,6 +55,38 @@ class UserProfile(AbstractUser):
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(default=timezone.now)
+    groups = models.ManyToManyField(
+        Group,
+        related_name='userprofile_set',  # Change this to avoid clash
+        blank=True,
+        help_text='The groups this user belongs to.',
+        verbose_name='groups'
+    )
+
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name='userprofile_set',  # Change this to avoid clash
+        blank=True,
+        help_text='Specific permissions for this user.',
+        verbose_name='user permissions'
+    )
     objects = CustomUserManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'email']
+
+    def __str__(self):
+        """Return a string representation of the user"""
+        return self.email
+    
+    class Meta:
+        """This class defines the metadata options for the UserProfile model."""
+        verbose_name = 'User Profile'
+        verbose_name_plural = 'User Profiles'
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['email', 'username']),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=['email'], name='unique_email'),
+            models.UniqueConstraint(fields=['username'], name='unique_username')
+        ]
