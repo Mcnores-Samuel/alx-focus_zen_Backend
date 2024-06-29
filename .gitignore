@@ -1,6 +1,6 @@
 *.bak
 venv/
-__pycache__/*
+__pycache__/
 *.pyc
-media/*
-migration/*
+media/
+migration/
