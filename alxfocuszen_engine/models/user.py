@@ -57,7 +57,7 @@ class UserProfile(AbstractUser):
     updated_at = models.DateTimeField(default=timezone.now)
     groups = models.ManyToManyField(
         Group,
-        related_name='userprofile_set',  # Change this to avoid clash
+        related_name='userprofile_set',
         blank=True,
         help_text='The groups this user belongs to.',
         verbose_name='groups'
@@ -65,7 +65,7 @@ class UserProfile(AbstractUser):
 
     user_permissions = models.ManyToManyField(
         Permission,
-        related_name='userprofile_set',  # Change this to avoid clash
+        related_name='userprofile_set',
         blank=True,
         help_text='Specific permissions for this user.',
         verbose_name='user permissions'
