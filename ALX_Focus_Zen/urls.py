@@ -10,7 +10,5 @@ from django.conf.urls import static
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('alxfocuszen_engine/', include('alxfocuszen_engine.routes.urls')),
-    path('', RedirectView.as_view(url='alxfocuszen_engine/')),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('', include('alxfocuszen_engine.routes.urls')),
 ]

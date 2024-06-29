@@ -3,5 +3,5 @@ from django.urls import path
 from alxfocuszen_engine.api.v1.views.index import index
 
 urlpatterns = [
-    path('', index),
+    path('', index, name='index'),
 ]
