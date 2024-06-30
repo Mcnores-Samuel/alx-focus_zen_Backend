@@ -6,24 +6,35 @@ from django.utils import timezone
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    """The UserProfileSerializer class defines the serializer for the UserProfile model."""
+    """The UserProfileSerializer class defines the serializer for the UserProfile model.
+    It serializes the user data to be returned in the API response.
+
+    Args:
+        serializers (ModelSerializer): The base model serializer class
+    """
     class Meta:
         """This class defines the metadata for the UserProfileSerializer class."""
         model = UserProfile
-        fields = '__all__'
+        fields = ['id', 'email', 'username', 'password', 'created_at', 'updated_at']
         read_only_fields = ['created_at', 'updated_at']
-        extra_kwargs = {
-            'status': {'read_only': True}
-        }
 
     def create(self, validated_data):
-        """This method creates a new user profile."""
+        """This method creates a new user profile.
+
+        Args:
+            validated_data (dict): The validated user data
+        
+        Returns:
+            UserProfile: The created user profile
+        """
         user = UserProfile.objects.create_user(
             email=validated_data['email'],
             username=validated_data['username'],
             password=validated_data['password'],
             created_at=timezone.now(),
-            updated_at=timezone.now()
+            updated_at=timezone.now(),
+            is_active=False
             
         )
+        user = UserProfile.objects.get(email=validated_data['email'])
         return user

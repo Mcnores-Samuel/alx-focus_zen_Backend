@@ -8,7 +8,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls import static
 from django.views.generic import RedirectView
+from django.contrib import admin
 
 urlpatterns = [
     path('', include('alxfocuszen_engine.routes.urls')),
+    path('admin/', admin.site.urls),
 ]

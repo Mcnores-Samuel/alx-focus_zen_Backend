@@ -3,65 +3,38 @@
 from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from alxfocuszen_engine.models.user import UserProfile
 from alxfocuszen_engine.api.v1.engine.user_serializer import UserProfileSerializer
 
 
 class SignUpView(generics.CreateAPIView):
-    """The SignUpView class creates new users.
+    """This class creates a new user.
+    The user data is validated and saved to the database.
+    The user is then authenticated and tokens are generated.
 
-    This class inherits from the CreateAPIView class in the generics module
-    of the rest_framework package.
+    Args:
+        generics (CreateAPIView): A generic class for creating a new user.
 
-    Attributes:
-        queryset: A queryset containing all user profiles.
-        serializer: An instance of the UserProfileSerializer class.
-
-    Methods:
-        create: Creates a new user profile.
+    Returns:
+        Response: A response with the user data and tokens.
     """
-    serializer = UserProfileSerializer
+    serializer_class = UserProfileSerializer
 
     def create(self, request, *args, **kwargs):
-        """This method creates a new user profile.
-
-        The method takes a request object and optional arguments and keyword
-        arguments. It creates a new user profile and returns a response
-        object with the new user profile data and a status code.
+        """Create a new user and generate tokens.
 
         Args:
-            request: An object containing the request data.
-            *args: Optional arguments.
-            **kwargs: Optional keyword arguments.
+            request (Request): The request object.
 
         Returns:
-            A response object with the new user profile data and a status code.
+            Response: A response with the user data and tokens.
         """
-        serializer_class = UserProfileSerializer
-
-        def create(self, request, *args, **kwargs):
-            """This method creates a new user profile.
-
-            The method takes a request object and optional arguments and keyword
-            arguments. It creates a new user profile and returns a response
-            object with the new user profile data and a status code.
-
-            Args:
-                request: An object containing the request data.
-                *args: Optional arguments.
-                **kwargs: Optional keyword arguments.
-
-            Returns:
-                A response object with the new user profile data and a status
-                code.
-            """
-            serializer = self.get_serializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
-            user = serializer.save()
-            refresh = RefreshToken.for_user(user)
-
-            return Response({
-                'user': serializer.data,
-                'refresh': str(refresh),
-                'access': str(refresh.access_token)
-            }, status=status.HTTP_201_CREATED)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        refresh = RefreshToken.for_user(user)
+        response_data = {
+            'user': serializer.data,
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        }
+        return Response(response_data, status=status.HTTP_201_CREATED)
