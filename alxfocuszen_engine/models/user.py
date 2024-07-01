@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class CustomUserManager(BaseUserManager):
     """Custom user manager to handle the creation of regular users and superusers."""
-    
+
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError('The Email field must be set')
@@ -32,7 +32,7 @@ class UserProfile(AbstractUser):
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(default=timezone.now)
-    
+
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
