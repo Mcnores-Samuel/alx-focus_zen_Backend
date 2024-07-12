@@ -1,4 +1,4 @@
-from alxfocuszen_engine.contral_center.user_admin import UserProfileAdmin
+from alxfocuszen_engine.control_center.user_admin import UserProfileAdmin
 from alxfocuszen_engine.models.user import UserProfile
 from django.contrib import admin
 

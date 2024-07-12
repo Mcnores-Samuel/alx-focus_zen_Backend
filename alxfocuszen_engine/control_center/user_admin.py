@@ -8,7 +8,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     Args:
         admin (ModelAdmin): The base model admin class
     """
-    list_display = ['email', 'username', 'created_at', 'updated_at']
+    list_display = ['email', 'username', 'is_active', 'is_superuser', 'created_at', 'updated_at']
     search_fields = ['email', 'username']
     list_filter = ['created_at', 'updated_at', 'is_active', 'is_staff', 'is_superuser']
     readonly_fields = ['created_at', 'updated_at']

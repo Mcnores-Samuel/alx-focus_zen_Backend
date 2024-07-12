@@ -18,6 +18,7 @@ class TaskListView(generics.ListCreateAPIView):
         """
         serializer.save(user=self.request.user.id)
 
+
     def get_queryset(self):
         """This method filters the tasks based on the user.
         
@@ -26,6 +27,7 @@ class TaskListView(generics.ListCreateAPIView):
         """
         return Task.objects.filter(user=self.request.user.id)
     
+
     def list(self, request, *args, **kwargs):
         """This method lists the tasks.
         
