@@ -1,14 +1,17 @@
 """This module contains the task api views."""
 from rest_framework import status, generics
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from alxfocuszen_engine.api.v1.engine.task_serializer import TaskSerializer
 from alxfocuszen_engine.models.tasks import Task
+from alxfocuszen_engine.models.user import UserProfile
 
 
 class TaskListView(generics.ListCreateAPIView):
     """This class defines the view for listing and creating tasks."""
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    # permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         """This method creates a new task.
@@ -16,7 +19,7 @@ class TaskListView(generics.ListCreateAPIView):
         Args:
             serializer (TaskSerializer): The task serializer object.
         """
-        serializer.save(user=self.request.user.id)
+        serializer.save(user=self.request.user)
 
 
     def get_queryset(self):
@@ -25,7 +28,7 @@ class TaskListView(generics.ListCreateAPIView):
         Returns:
             QuerySet: The queryset of tasks.
         """
-        return Task.objects.filter(user=self.request.user.id)
+        return Task.objects.filter(user=self.request.user)
     
 
     def list(self, request, *args, **kwargs):

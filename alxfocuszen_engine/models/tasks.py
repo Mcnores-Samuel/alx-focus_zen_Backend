@@ -62,8 +62,8 @@ class Task(models.Model):
         default=TaskRecurrenceType.NONE
     )
     recurrence_interval = models.PositiveIntegerField(default=1)
-    days_of_week = models.JSONField(default=list, blank=True)
-    days_of_month = models.JSONField(default=list, blank=True)
+    days_of_week = models.JSONField(default=list, blank=True, null=True)
+    days_of_month = models.JSONField(default=list, blank=True, null=True)
     time_of_day = models.TimeField(null=True, blank=True)
     due_date = models.DateField(null=True, blank=True)
     priority = models.PositiveIntegerField(

@@ -9,7 +9,10 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         """This class defines the metadata for the TaskSerializer class."""
         model = Task
-        fields = '__all__'
+        fields = ['user', 'title', 'description', 'status', 'recurrence_type', 'recurrence_interval',
+                  'days_of_week', 'days_of_month', 'time_of_day', 'due_date', 'priority',
+                  'num_pomodoros', 'total_pomodoros', 'task_duration', 'task_theme_color',
+                  'created_at', 'updated_at']
         read_only_fields = ['created_at', 'updated_at']
         extra_kwargs = {
             'status': {'read_only': True}

@@ -10,4 +10,5 @@ urlpatterns = [
     path('api/v1/login/', TokenObtainPairView.as_view(), name='login'),
     path('api/v1/refresh/', TokenRefreshView.as_view(), name='refresh'),
     path('api/v1/tasks/create/', TaskListView.as_view(), name='create_task'),
+    path('api/v1/tasks/', TaskListView.as_view(), name='list_tasks'),
 ]
