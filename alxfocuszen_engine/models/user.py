@@ -27,7 +27,18 @@ class CustomUserManager(BaseUserManager):
 
         return self.create_user(email, password, **extra_fields)
 
+
 class UserProfile(AbstractUser):
+    """User profile object or model, responsible for handling user data.
+    This model extends the AbstractUser model and adds an avatar field to it.
+
+    Attributes:
+        email: A string representing the user's email address.
+        avatar: An image representing the user's profile picture.
+        created_at: A datetime representing the date and time the user was created.
+        updated_at: A datetime representing the date and time the user was last updated.
+        username: A string representing the user's username.
+    """
     email = models.EmailField(max_length=255, unique=True)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
@@ -49,6 +60,5 @@ class UserProfile(AbstractUser):
             models.Index(fields=['email', 'username']),
         ]
         constraints = [
-            models.UniqueConstraint(fields=['email'], name='unique_email'),
-            models.UniqueConstraint(fields=['username'], name='unique_username')
+            models.UniqueConstraint(fields=['email'], name='unique_email')
         ]
