@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'alxfocuszen_engine',
+    'corsheaders',
 ]
 
 # REST Framework configuration
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'ALX_Focus_Zen.urls'
@@ -90,6 +92,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+# allowing my spacific frontend domain.
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
 ]
 
 WSGI_APPLICATION = 'ALX_Focus_Zen.wsgi.application'

@@ -108,3 +108,6 @@ class Task(models.Model):
             models.Index(fields=['priority']),
             models.Index(fields=['due_date']),
         ]
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'title', 'due_date'], name='unique_task')
+        ]
