@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "ALX_Focus_Zen/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.8"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "ALX_Focus_Zen/wsgi.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "ALX_Focus_Zen/wsgi.py"
+    }
+  ],
+  "env": {
+    "PYTHONUNBUFFERED": "1",
+    "DJANGO_SETTINGS_MODULE": "ALX_Focus_Zen.settings" 
+  }
+}
