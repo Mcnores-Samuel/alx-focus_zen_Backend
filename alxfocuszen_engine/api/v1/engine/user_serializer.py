@@ -36,3 +36,20 @@ class UserProfileSerializer(serializers.ModelSerializer):
         )
         user = UserProfile.objects.get(email=validated_data['email'])
         return user
+    
+    def update(self, instance, validated_data):
+        """This method updates an existing user profile.
+
+        Args:
+            instance (UserProfile): The user profile instance
+            validated_data (dict): The validated user data
+        
+        Returns:
+            UserProfile: The updated user profile
+        """
+        instance.email = validated_data.get('email', instance.email)
+        instance.username = validated_data.get('username', instance.username)
+        instance.password = validated_data.get('password', instance.password)
+        instance.updated_at = timezone.now()
+        instance.save()
+        return instance
