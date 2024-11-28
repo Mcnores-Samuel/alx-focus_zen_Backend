@@ -33,6 +33,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             password=validated_data['password'],
             created_at=timezone.now(),
             updated_at=timezone.now(),
+            is_active=True,
         )
         user = UserProfile.objects.get(email=validated_data['email'])
         return user
