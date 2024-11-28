@@ -29,6 +29,7 @@ DEBUG = bool(int(environ.get('DEBUG', 1)))
 
 SERVER = environ.get('SERVER', 'localhost')
 LOCAL_HOST = environ.get('LOCAL_HOST', 'localhost')
+ORIGIN_ACCESS_1 = environ.get('ORIGIN_ACCESS_1', 'localhost')
 
 ALLOWED_HOSTS = [SERVER, LOCAL_HOST]
 
@@ -98,9 +99,11 @@ TEMPLATES = [
 ]
 
 # allowing my spacific frontend domain.
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
+CORS_ALLOWED_ORIGINS = [ORIGIN_ACCESS_1]
+
+CORE_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 WSGI_APPLICATION = 'ALX_Focus_Zen.wsgi.application'
 
