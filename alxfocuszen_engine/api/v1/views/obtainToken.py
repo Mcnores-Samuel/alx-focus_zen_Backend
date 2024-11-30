@@ -18,13 +18,14 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         response = super().post(request, *args, **kwargs)
         data = response.data
 
+
         response.set_cookie(
             key='access_token',
             value=data['access'],
             httponly=True,
             secure=True,
             samesite='Strict',
-            max_age=300
+            max_age=timezone.timedelta(minutes=60).total_seconds()
         )
         response.set_cookie(
             key='refresh_token',

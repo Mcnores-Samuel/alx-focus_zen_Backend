@@ -4,12 +4,14 @@ from alxfocuszen_engine.api.v1.views.auth_view import SignUpView
 from alxfocuszen_engine.api.v1.views.obtainToken import CustomTokenObtainPairView
 from alxfocuszen_engine.api.v1.views.refreshToken import CustomTokenRefreshView
 from alxfocuszen_engine.api.v1.views.tasks_view import TaskListView
+from alxfocuszen_engine.api.v1.views.verifyToken import CustomTokenVerifyView
 
 
 urlpatterns = [
     path('api/v1/signup/', SignUpView.as_view(), name='signup'),
     path('api/v1/login/', CustomTokenObtainPairView.as_view(), name='login'),
     path('api/v1/refresh/', CustomTokenRefreshView.as_view(), name='refresh'),
+    path('api/v1/token_verify/', CustomTokenVerifyView.as_view(), name='token_verify'),
     path('api/v1/tasks/create/', TaskListView.as_view(), name='create_task'),
     path('api/v1/tasks/', TaskListView.as_view(), name='list_tasks'),
     path('api/v1/tasks/<int:pk>/', TaskListView.as_view(), name='update_task'),
